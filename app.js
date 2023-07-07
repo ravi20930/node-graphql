@@ -4,6 +4,7 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const { getUsers, getUserById, createUser, updateUser, deleteUser } = require('./controllers/user-controller');
 const sequelize = require('./utils/db');
 const { seedDatabase } = require('./models/user')
+const port = process.env.APP_PORT || 3000;
 
 const typeDefs = gql`
 type User {
@@ -24,9 +25,7 @@ type User {
     createUser(name: String!, email: String!, age: Int!): User
     updateUser(id: UUID!, name: String!, email: String!, age: Int!): User
     deleteUser(id: UUID!): User
-  }
-  
-`;
+  }`;
 
 const resolvers = {
     // analogous to GET
@@ -50,7 +49,6 @@ const app = express();
     try {
         await sequelize.sync({ alter: false });
         console.log('Database synchronized successfully.');
-        const port = process.env.APP_PORT || 3000;
         await server.start();
         await server.applyMiddleware({ app });
         await seedDatabase();
