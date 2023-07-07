@@ -1,0 +1,20 @@
+// // mutation POST/ PUT/ DEL
+// mutation CreateUser {
+//     createUser(name: "Ravi Shankar", email: "itisrvi@gmail.com", age: 22) {
+//       id
+//       name
+//       email
+//       age
+//     }
+//   }
+  
+// // queries GET
+// query GetUsers {
+//     users {
+//       # id
+//       name
+//       # email
+//       age
+//     }
+//   }
+  
